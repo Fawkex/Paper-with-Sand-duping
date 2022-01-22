@@ -28,10 +28,12 @@ jobs:
             - name: Remove fix for sand duping
               run: |
                   PATCH=$(echo patches/server/$(ls patches/server/|grep Fix-sand-duping))
-                  mv PATCH patches/removed/
+                  echo "Located patch for sand duping:" $PATCH
+                  mv $PATCH patches/removed/
             - name: Patch and build
               run: |
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
                   #./gradlew applyPatches --stacktrace
                   #./gradlew build --stacktrace
+                  ls build/libs -a
