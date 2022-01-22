@@ -34,6 +34,16 @@ jobs:
               run: |
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
-                  #./gradlew applyPatches --stacktrace
-                  #./gradlew build --stacktrace
-                  ls build/libs -a
+                  ./gradlew applyPatches --stacktrace
+                  ./gradlew build --stacktrace
+                  echo $(ls build/libs -a)
+            - name: Create release
+              id: create_release
+              uses: actions/create-release@v1.1.4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ github.ref }}
+                  release_name: Release ${{ github.ref }}
+                  draft: false
+                  prelease: false
