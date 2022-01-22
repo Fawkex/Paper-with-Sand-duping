@@ -37,7 +37,8 @@ jobs:
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build --stacktrace
-                  cp ./build/libs/*.jar .paper.jar
+                  cp ./build/libs/*.jar ./paper.jar
+                  cat ./paper.jar | sha256sum
             - name: Create Release
               id: create_release
               uses: actions/create-release@v1.1.4
@@ -55,6 +56,6 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   upload_url: ${{ steps.create_release.outputs.upload_url }}
-                  asset_path: ./build/libs/paper.jar
+                  asset_path: ./paper.jar
                   asset_name: paper.jar
                   asset_content_type:  application/java-archive
