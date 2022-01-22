@@ -36,7 +36,7 @@ jobs:
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
-                  ./gradlew build --stacktrace
+                  ./gradlew createReobfBundlerJar --stacktrace
                   cp ./build/libs/*.jar ./paper.jar
                   cat ./paper.jar | sha256sum
             - name: Create Release
