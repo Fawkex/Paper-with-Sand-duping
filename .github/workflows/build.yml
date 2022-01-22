@@ -25,7 +25,7 @@ jobs:
                   java-version: ${{ matrix.java }}
                   cache: 'gradle'
                   distribution: 'temurin'
-            - name: Remove fix for sand duping
+            - name: Remove Fix for Sand duping
               run: |
                   PATCH=$(echo patches/server/$(ls patches/server/|grep Fix-sand-duping))
                   echo "Located patch for sand duping:" $PATCH
@@ -36,14 +36,23 @@ jobs:
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build --stacktrace
-                  echo $(ls build/libs -a)
-            - name: Create release
+                  cp ./build/libs/*.jar ./build/libs/paper.jar
+            - name: Create Release
               id: create_release
               uses: actions/create-release@v1.1.4
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                  tag_name: ${{ github.ref }}
-                  release_name: Release ${{ github.ref }}
+                  tag_name: ${{ github.run_number }}
+                  release_name: Release ${{ github.run_number }}
                   draft: false
                   prelease: false
+            - name: Upload Jar
+              id: upload-jar
+              uses: actions/upload-release-asset@v1.0.2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
+                  asset_path: ./build/libs/paper.jar
+                  asset_content_type:  application/java-archive
