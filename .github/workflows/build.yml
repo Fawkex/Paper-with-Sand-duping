@@ -11,7 +11,7 @@ on: [push]
 jobs:
     build:
         # Only run on PRs if the source branch is on someone else's repo
-        #if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+        if: ${{ github.event_name == 'push'}}
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -33,15 +33,5 @@ jobs:
               run: |
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
-                  ./gradlew applyPatches --stacktrace
-                  ./gradlew build --stacktrace
-             - name: Create Release Test
-               id: create_release
-               uses: actions/create-release@v1
-               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-               with:
-                  tag_name: ${{ github.ref }}
-                  release_name: Release ${{ github.ref }}
-                  draft: false
-                  prerelease: false
+                  #./gradlew applyPatches --stacktrace
+                  #./gradlew build --stacktrace
