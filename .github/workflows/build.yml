@@ -32,11 +32,12 @@ jobs:
                   mv $PATCH patches/removed/
             - name: Patch and build
               run: |
+                  rm build -rf
                   git config --global user.email "no-reply@github.com"
                   git config --global user.name "Github Actions"
                   ./gradlew applyPatches --stacktrace
                   ./gradlew build --stacktrace
-                  cp ./build/libs/*.jar ./build/libs/paper.jar
+                  cp ./build/libs/*.jar .paper.jar
             - name: Create Release
               id: create_release
               uses: actions/create-release@v1.1.4
