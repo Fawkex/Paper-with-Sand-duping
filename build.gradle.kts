@@ -5,7 +5,7 @@ plugins {
     java
     `maven-publish`
     id("com.github.johnrengelman.shadow") version "7.1.2" apply false
-    id("io.papermc.paperweight.core") version "1.3.5"
+    id("io.papermc.paperweight.core") version "1.3.6"
 }
 
 allprojects {
@@ -18,6 +18,8 @@ allprojects {
         }
     }
 }
+
+val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
 
 subprojects {
     tasks.withType<JavaCompile> {
@@ -38,13 +40,9 @@ subprojects {
         }
     }
 
-    if (name == "Paper-MojangAPI") {
-        return@subprojects
-    }
-
     repositories {
         mavenCentral()
-        maven("https://papermc.io/repo/repository/maven-public/")
+        maven(paperMavenPublicUrl)
     }
 }
 
@@ -52,7 +50,7 @@ val spigotDecompiler: Configuration by configurations.creating
 
 repositories {
     mavenCentral()
-    maven("https://papermc.io/repo/repository/maven-public/") {
+    maven(paperMavenPublicUrl) {
         content {
             onlyForConfigurations(
                 configurations.paperclip.name,
@@ -64,8 +62,8 @@ repositories {
 
 dependencies {
     paramMappings("net.fabricmc:yarn:1.18.2+build.2:mergedv2")
-    remapper("net.fabricmc:tiny-remapper:0.8.1:fat")
-    decompiler("net.minecraftforge:forgeflower:1.5.498.29")
+    remapper("net.fabricmc:tiny-remapper:0.8.2:fat")
+    decompiler("net.minecraftforge:forgeflower:1.5.605.7")
     spigotDecompiler("io.papermc:patched-spigot-fernflower:0.1+build.4")
     paperclip("io.papermc:paperclip:3.0.2")
 }
@@ -74,9 +72,9 @@ paperweight {
     minecraftVersion.set(providers.gradleProperty("mcVersion"))
     serverProject.set(project(":paper-server"))
 
-    paramMappingsRepo.set("https://maven.fabricmc.net/")
-    remapRepo.set("https://maven.fabricmc.net/")
-    decompileRepo.set("https://files.minecraftforge.net/maven/")
+    paramMappingsRepo.set(paperMavenPublicUrl)
+    remapRepo.set(paperMavenPublicUrl)
+    decompileRepo.set(paperMavenPublicUrl)
 
     craftBukkit {
         fernFlowerJar.set(layout.file(spigotDecompiler.elements.map { it.single().asFile }))
@@ -108,9 +106,7 @@ tasks.generateDevelopmentBundle {
     mojangApiCoordinates.set("io.papermc.paper:paper-mojangapi")
     libraryRepositories.addAll(
         "https://repo.maven.apache.org/maven2/",
-        "https://libraries.minecraft.net/",
-        "https://papermc.io/repo/repository/maven-public/",
-        "https://maven.fabricmc.net/",
+        paperMavenPublicUrl,
     )
 }
 
@@ -127,7 +123,7 @@ publishing {
 allprojects {
     publishing {
         repositories {
-            maven("https://papermc.io/repo/repository/maven-snapshots/") {
+            maven("https://repo.papermc.io/repository/maven-snapshots/") {
                 name = "paperSnapshots"
                 credentials(PasswordCredentials::class)
             }

@@ -5,10 +5,10 @@ Subject: [PATCH] Ensure valid vehicle status
 
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 1a2dd16ec1f189c3b53a57c0224a15f451b92501..f6410ba180a85b114a296c64ce293f0891f6b96c 100644
+index 6f55fa61f4c3291413aab076a46cec2cc103dac5..6b9622c41966843411184493f42b3d4005be533e 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-@@ -503,7 +503,7 @@ public class ServerPlayer extends Player {
+@@ -504,7 +504,7 @@ public class ServerPlayer extends Player {
              }
          }
  

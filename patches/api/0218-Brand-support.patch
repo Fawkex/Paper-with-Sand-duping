@@ -5,10 +5,10 @@ Subject: [PATCH] Brand support
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 6176fde69072ca37df803109acfcc145528f583a..201ac1cba11037e4baec5d059ac72077a70fe67f 100644
+index df56ba1ef10d0290f1f67a4a69fba489d370be55..ec9e825bedd4814a533f8d0b024aada55725f331 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -2580,6 +2580,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -2606,6 +2606,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          // Paper end
      }
  

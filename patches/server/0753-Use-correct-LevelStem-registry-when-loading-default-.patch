@@ -7,7 +7,7 @@ Subject: [PATCH] Use correct LevelStem registry when loading default
 Co-authored-by: Jake Potrebic <jake.m.potrebic@gmail.com>
 
 diff --git a/src/main/java/net/minecraft/resources/RegistryLoader.java b/src/main/java/net/minecraft/resources/RegistryLoader.java
-index 75f72b568ee2b27c5042da688b62d4e3c5732e09..8c3555842202d67793d818c96feda4daa2f08a0c 100644
+index 0d28a3a7f52174e70e044957b37361043b153e42..cdd2556e0401be0411563b89c6b7456a4778376a 100644
 --- a/src/main/java/net/minecraft/resources/RegistryLoader.java
 +++ b/src/main/java/net/minecraft/resources/RegistryLoader.java
 @@ -42,6 +42,12 @@ public class RegistryLoader {

@@ -5,7 +5,7 @@ Subject: [PATCH] Add isCollidable methods to various places
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
-index 6c29efdb641c5d768a8bbf410da2a059e7d3e90a..0b2e33fb16f832e0ddfe5e39a8a16caf98521098 100644
+index b2628b1698ef2a235e7b465f09747cafbb133b7a..2881bcb570dc86a7602309e1f540ecd1c7f00284 100644
 --- a/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
 +++ b/src/main/java/org/bukkit/craftbukkit/block/CraftBlock.java
 @@ -480,6 +480,11 @@ public class CraftBlock implements Block {
@@ -37,10 +37,10 @@ index 7b9e943b391c061782fccd2b8d705ceec8db50fe..966ac60daebb7bb211ab8096fc0c5f33
 +    // Paper end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-index 40574ff722e3cb3dcce0e7fa0b0d2a692d33e3f9..17e67d32522ddeb9a8db06089fb7b7f3ed894d4d 100644
+index acd2bbe5807fcf1abc65da63c2a049735aefe977..2ab43400661fcc98d989e375dbeffa12e187c5e9 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-@@ -569,6 +569,12 @@ public final class CraftMagicNumbers implements UnsafeValues {
+@@ -574,6 +574,12 @@ public final class CraftMagicNumbers implements UnsafeValues {
          var supplier = net.minecraft.world.entity.ai.attributes.DefaultAttributes.getSupplier((net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LivingEntity>) net.minecraft.core.Registry.ENTITY_TYPE.get(CraftNamespacedKey.toMinecraft(bukkitEntityKey)));
          return new io.papermc.paper.attribute.UnmodifiableAttributeMap(supplier);
      }

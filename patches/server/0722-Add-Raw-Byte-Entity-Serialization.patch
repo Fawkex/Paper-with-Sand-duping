@@ -5,7 +5,7 @@ Subject: [PATCH] Add Raw Byte Entity Serialization
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 434142b0a1079d924ab0f0d1193482afbb9fda67..dbfd97c2ba09ffd6b83c5b2f787e7463ab61e4a6 100644
+index c2f12edf1045667641579788d8a38706dc1285ab..9c33b2259bf741c5f891691836ad19f9200c4308 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -1837,6 +1837,15 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
@@ -45,7 +45,7 @@ index 23f3acdc37968ec76ffb57e022755c97ff02ff67..9e5f338d0bb64ac47a99cd08a2ab083d
      // Paper end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-index 17e67d32522ddeb9a8db06089fb7b7f3ed894d4d..bda04a3a7865cfaf6eff7a40b3f12fa3145771e9 100644
+index 2ab43400661fcc98d989e375dbeffa12e187c5e9..5b05ef93a02e8a8525cf1558273d0f8963407862 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 @@ -457,6 +457,30 @@ public final class CraftMagicNumbers implements UnsafeValues {

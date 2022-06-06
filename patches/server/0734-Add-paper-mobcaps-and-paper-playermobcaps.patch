@@ -10,7 +10,7 @@ Also has a hover text on each mob category listing what entity types are
 in said category
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperCommand.java b/src/main/java/com/destroystokyo/paper/PaperCommand.java
-index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b8953cc09f0 100644
+index fa0b824747c5b15cfb29e22b2d30b9c6932c1320..ca401a3203176578f9cd399aa740f07147e45de9 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperCommand.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperCommand.java
 @@ -3,6 +3,7 @@ package com.destroystokyo.paper;
@@ -48,12 +48,15 @@ index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b89
  import org.apache.commons.lang3.tuple.MutablePair;
  import org.apache.commons.lang3.tuple.Pair;
  import org.bukkit.Bukkit;
-@@ -55,11 +65,12 @@ import java.util.List;
+@@ -54,6 +64,7 @@ import java.util.List;
  import java.util.Locale;
  import java.util.Map;
  import java.util.Set;
 +import java.util.function.ToIntFunction;
  import java.util.stream.Collectors;
+ 
+ import static net.kyori.adventure.text.Component.text;
+@@ -66,7 +77,7 @@ import static net.kyori.adventure.text.format.NamedTextColor.YELLOW;
  
  public class PaperCommand extends Command {
      private static final String BASE_PERM = "bukkit.command.paper.";
@@ -62,7 +65,7 @@ index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b89
  
      public PaperCommand(String name) {
          super(name);
-@@ -92,6 +103,10 @@ public class PaperCommand extends Command {
+@@ -99,6 +110,10 @@ public class PaperCommand extends Command {
                      return getListMatchingLast(sender, args, "help", "chunks");
                  }
                  break;
@@ -73,7 +76,7 @@ index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b89
              case "chunkinfo":
                  List<String> worldNames = new ArrayList<>();
                  worldNames.add("*");
-@@ -188,6 +203,12 @@ public class PaperCommand extends Command {
+@@ -195,6 +210,12 @@ public class PaperCommand extends Command {
              case "syncloadinfo":
                  this.doSyncLoadInfo(sender, args);
                  break;
@@ -86,7 +89,7 @@ index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b89
              case "ver":
                  if (!testPermission(sender, "version")) break; // "ver" needs a special check because it's an alias. All other commands are checked up before the switch statement (because they are present in the SUBCOMMANDS set)
              case "version":
-@@ -246,6 +267,184 @@ public class PaperCommand extends Command {
+@@ -253,6 +274,184 @@ public class PaperCommand extends Command {
          }
      }
  
@@ -272,10 +275,10 @@ index 5a30840a2c35d8b721e27e91b4e6816e9b7c1e5a..ddabe0c59a04e6017368c5ba57767b89
          List<org.bukkit.World> worlds;
          if (args.length < 2 || args[1].equals("*")) {
 diff --git a/src/main/java/net/minecraft/world/level/NaturalSpawner.java b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
-index 1622450b53e0f0f48c3ca107e4d705b4ad29dadf..f6a225eed29eed364b7e2ea6bc85d55d8a325a11 100644
+index ce6051531f021bf20851bc5ab763e732ee10427d..87d1f5b2717fc82203b5674ac0bf2704117f8f63 100644
 --- a/src/main/java/net/minecraft/world/level/NaturalSpawner.java
 +++ b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
-@@ -191,6 +191,16 @@ public final class NaturalSpawner {
+@@ -190,6 +190,16 @@ public final class NaturalSpawner {
          world.getProfiler().pop();
      }
  
@@ -293,10 +296,10 @@ index 1622450b53e0f0f48c3ca107e4d705b4ad29dadf..f6a225eed29eed364b7e2ea6bc85d55d
      public static void spawnCategoryForChunk(MobCategory group, ServerLevel world, LevelChunk chunk, NaturalSpawner.SpawnPredicate checker, NaturalSpawner.AfterSpawnCallback runner) {
          spawnCategoryForChunk(group, world, chunk, checker, runner, Integer.MAX_VALUE, null);
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 2f05c9d16f6b68db289d0822ea565e5195f61002..a51e2fe2337ba1122dfe86410bb10eddaf21addb 100644
+index 538e5663e7e23a1bcc2c832930d4c1489a48c07a..83bbe0e65760a7f380e19da5a3938b1a30e5d679 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -2137,6 +2137,11 @@ public final class CraftServer implements Server {
+@@ -2149,6 +2149,11 @@ public final class CraftServer implements Server {
  
      @Override
      public int getSpawnLimit(SpawnCategory spawnCategory) {
@@ -309,10 +312,10 @@ index 2f05c9d16f6b68db289d0822ea565e5195f61002..a51e2fe2337ba1122dfe86410bb10edd
      }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index f0e84b0a37a7fc374fb3f11e77a76a627c39b3e8..df986f97b86ba1fa4da15d969c635333abfdba91 100644
+index c38f9db699240f203c8353019df82a0fc824a510..42434152c79f8318009b02e9a39326fd9d4ff466 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1717,9 +1717,14 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -1706,9 +1706,14 @@ public class CraftWorld extends CraftRegionAccessor implements World {
          Validate.notNull(spawnCategory, "SpawnCategory cannot be null");
          Validate.isTrue(CraftSpawnCategory.isValidForLimits(spawnCategory), "SpawnCategory." + spawnCategory + " are not supported.");
  

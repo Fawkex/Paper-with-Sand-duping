@@ -24,7 +24,7 @@ and an action can be defined: DROP or KICK
 If interval or rate are less-than 0, the limit is ignored
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-index 3d1319af2dbade4234025793303333cb95d9c019..cd601be6604fd81be8d58f6a46d39008fa8ecc20 100644
+index 5c1062f1f9578f2c728b0674eb3a1785b9c345b5..919ce4ee6aafe925e520424dc0529999b536ecc7 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
 @@ -521,4 +521,102 @@ public class PaperConfig {

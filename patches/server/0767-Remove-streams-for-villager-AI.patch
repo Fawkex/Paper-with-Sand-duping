@@ -128,7 +128,7 @@ index e644bdd3a6f7c09a44149da03587b796674fa568..c67c448e0d8bdd788b94189651304110
      }
  }
 diff --git a/src/main/java/net/minecraft/world/entity/ai/behavior/ShufflingList.java b/src/main/java/net/minecraft/world/entity/ai/behavior/ShufflingList.java
-index 1bc34453933bc7590af45a5559a4fc75eb3e0c5c..204ca4fbd89bdadd902529f1f191df46fce3cace 100644
+index 4f42344fec13b8d7fe0c1dd412525853c35bacca..b35abac7029708042b25d98ab11005c2ea8ae6ea 100644
 --- a/src/main/java/net/minecraft/world/entity/ai/behavior/ShufflingList.java
 +++ b/src/main/java/net/minecraft/world/entity/ai/behavior/ShufflingList.java
 @@ -12,7 +12,7 @@ import java.util.Random;

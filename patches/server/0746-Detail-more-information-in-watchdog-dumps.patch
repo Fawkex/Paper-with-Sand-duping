@@ -77,7 +77,7 @@ index 97b05b7145c6a3a379de31b8988c909da9b21139..f7bb26e8b7a74a9ae5b469351b2fccc6
              });
              throw RunningOnDifferentThreadException.RUNNING_ON_DIFFERENT_THREAD;
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index cb872bcd9aba263ec2233aa1555bc99133cc682c..8f27ef86cac71e0a0002093f4eded83f8891876f 100644
+index 8fc78a0405359e6031e66e988f3ddbf913ca59bd..32446e874fdad36f9f80d22481a4d990967f38e3 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -981,7 +981,26 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -123,7 +123,7 @@ index cb872bcd9aba263ec2233aa1555bc99133cc682c..8f27ef86cac71e0a0002093f4eded83f
  
      private void tickPassenger(Entity vehicle, Entity passenger) {
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 08e76481ed60c5df64e76edb5b954f008177ca34..2fe2cdb86136fdc7c6b44bf521268f1dcd7491b8 100644
+index 9a91de63420e5b910e37773362376d500c78ce97..d3b78f536806246d0474a00bd482b69651455ccf 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -908,7 +908,42 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
@@ -183,7 +183,7 @@ index 08e76481ed60c5df64e76edb5b954f008177ca34..2fe2cdb86136fdc7c6b44bf521268f1d
      }
  
      protected boolean isHorizontalCollisionMinor(Vec3 adjustedMovement) {
-@@ -3866,7 +3908,9 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -3860,7 +3902,9 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      }
  
      public void setDeltaMovement(Vec3 velocity) {
@@ -193,7 +193,7 @@ index 08e76481ed60c5df64e76edb5b954f008177ca34..2fe2cdb86136fdc7c6b44bf521268f1d
      }
  
      public void setDeltaMovement(double x, double y, double z) {
-@@ -3942,7 +3986,9 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -3936,7 +3980,9 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          }
          // Paper end - fix MC-4
          if (this.position.x != x || this.position.y != y || this.position.z != z) {

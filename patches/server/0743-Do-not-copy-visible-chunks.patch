@@ -9,10 +9,10 @@ the function. I saw approximately 1/3rd of the function
 on the copy.
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperCommand.java b/src/main/java/com/destroystokyo/paper/PaperCommand.java
-index ddabe0c59a04e6017368c5ba57767b8953cc09f0..f57ec991111b45dbc33a81d3162ef58872ee3590 100644
+index ca401a3203176578f9cd399aa740f07147e45de9..dcda01dd8668c7ef7c63709179135deafb83eee5 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperCommand.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperCommand.java
-@@ -476,7 +476,7 @@ public class PaperCommand extends Command {
+@@ -483,7 +483,7 @@ public class PaperCommand extends Command {
              int ticking = 0;
              int entityTicking = 0;
  
@@ -186,10 +186,10 @@ index ef28e0f57ba593265a3eca4d3f21d0b1b51e8740..f4c1316ae1cadc1a7a7fed16e0e99704
          while (objectbidirectionaliterator.hasNext()) {
              Entry<ChunkHolder> entry = (Entry) objectbidirectionaliterator.next();
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index df986f97b86ba1fa4da15d969c635333abfdba91..6e10ca6dec598032eb8dc20dd88876db2ba2ae9b 100644
+index 42434152c79f8318009b02e9a39326fd9d4ff466..f05ff9891d59cd7ae4e37c05c690dda0c75962fe 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -160,7 +160,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -161,7 +161,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      @Override
      public int getTileEntityCount() {
          // We don't use the full world tile entity list, so we must iterate chunks
@@ -198,7 +198,7 @@ index df986f97b86ba1fa4da15d969c635333abfdba91..6e10ca6dec598032eb8dc20dd88876db
          int size = 0;
          for (ChunkHolder playerchunk : chunks.values()) {
              net.minecraft.world.level.chunk.LevelChunk chunk = playerchunk.getTickingChunk();
-@@ -181,7 +181,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -182,7 +182,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      public int getChunkCount() {
          int ret = 0;
  
@@ -207,7 +207,7 @@ index df986f97b86ba1fa4da15d969c635333abfdba91..6e10ca6dec598032eb8dc20dd88876db
              if (chunkHolder.getTickingChunk() != null) {
                  ++ret;
              }
-@@ -354,7 +354,18 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -339,7 +339,18 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public Chunk[] getLoadedChunks() {
@@ -227,7 +227,7 @@ index df986f97b86ba1fa4da15d969c635333abfdba91..6e10ca6dec598032eb8dc20dd88876db
          return chunks.values().stream().map(ChunkHolder::getFullChunkNow).filter(Objects::nonNull).map(net.minecraft.world.level.chunk.LevelChunk::getBukkitChunk).toArray(Chunk[]::new);
      }
  
-@@ -430,7 +441,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -415,7 +426,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean refreshChunk(int x, int z) {

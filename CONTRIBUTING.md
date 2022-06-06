@@ -168,7 +168,7 @@ move it under the line of the patch you wish to modify;
   assist you too.
    - Alternatively, if you only know the name of the patch, you can do
   `git commit -a --fixup "Subject of Patch name"`.
-1. Rebase with autosquash: `git rebase --autosquash -i base`.
+1. Rebase with autosquash: `git rebase -i --autosquash base`.
 This will automatically move your fixup commit to the right place, and you just
 need to "save" the changes.
 1. Type `./gradlew rebuildPatches` in the root directory;
@@ -402,7 +402,7 @@ progress will be lost if you do not;
 1. Identify the name(s) of the file(s) you want to import.
    - A complete list of all possible file names can be found at
    `./Paper-Server/.gradle/caches/paperweight/mc-dev-sources/net/minecraft/`. You might find
-   [MiniMappingViewer] useful if you need to translate between Mojang and Spigot mapped names.
+   [MappingViewer] useful if you need to translate between Mojang and Spigot mapped names.
 1. Open the file at `./build-data/dev-imports.txt` and add the name of your file to
 the script. Follow the instructions there;
 1. Re-patch the server `./gradlew applyPatches`;
@@ -448,4 +448,4 @@ everything like usual.
 > in Windows like described here:
 > <https://www.howtogeek.com/426749/how-to-access-your-linux-wsl-files-in-windows-10/>
 
-[MiniMappingViewer]: https://minidigger.github.io/MiniMappingViewer/
+[MappingViewer]: https://nms.screamingsandals.org/
